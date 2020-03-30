@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 __author__      = "Saulius Lukse"
 __copyright__   = "Copyright 2019, Kurokesu"
 __license__     = "MIT"
@@ -20,7 +21,7 @@ CHB_POS     = 1
 CHA_POS     = 0
 
 ser = serial.Serial()
-ser.port = 'COM21'              # Controller com port
+ser.port = '/dev/ttyACM1'              # Controller com port
 ser.baudrate = 115200           # BAUD rate when connected over CDC USB is not important
 ser.timeout = 5                 # max timeout to wait for command response
 
@@ -40,7 +41,7 @@ scf4_tools.send_command(ser, "$B2")
 # Energize PI leds
 scf4_tools.send_command(ser, "M238")
 # Set motion to forced mode
-scf4_tools.send_command(ser, "M231 A")
+scf4_tools.send_command(ser, "M231 B")
 
 # read status
 status_str = scf4_tools.send_command(ser, "!1")
@@ -50,10 +51,10 @@ status = scf4_tools.parse_status(status_str)
 print("!!", status[CHA_PI])
 if status[CHA_PI] == 0:
     # move lens axis back, until PI changes status
-    scf4_tools.send_command(ser, "G0 A100")
+    scf4_tools.send_command(ser, "G0 B100")
 else:
     # move lens axis back, until PI changes status
-    scf4_tools.send_command(ser, "G0 A-100")
+    scf4_tools.send_command(ser, "G0 B-100")
 
 # Wait until homing is over
 scf4_tools.wait_homing(ser, status[CHA_PI], CHA_PI)

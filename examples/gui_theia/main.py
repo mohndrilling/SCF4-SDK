@@ -3,7 +3,6 @@ __author__      = "Saulius Lukse"
 __copyright__   = "Copyright 2019, Kurokesu"
 __license__     = "MIT"
 
-
 import sys
 import os
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
@@ -23,14 +22,18 @@ MOVE_ABS      = 1
 
 # print(sys.version)
 
-from serial.tools import list_ports_posix
-import serial
-# from serial.tools import list_ports_vid_pid_osx_posix 
-# elif os.name == 'posix':
-#     from serial.tools.list_ports_posix import *
-#     from serial.tools.list_ports_vid_pid_osx_posix import *
-# else:
-#     raise ImportError("Serial error: no implementation for your platform ('%s') available" % (os.name,))
+if os.name == 'nt':
+    from serial.tools.list_ports_windows import *
+elif sys.platform == 'darwin':
+    from serial.tools.list_ports_osx import *
+    from serial.tools.list_ports_vid_pid_osx_posix import *
+elif os.name == 'posix':
+    from serial.tools import list_ports_posix 
+    import serial
+    #from serial.tools.list_ports_posix import *
+    #from serial.tools.list_ports_vid_pid_osx_posix import *
+else:
+    raise ImportError("Serial error: no implementation for your platform ('%s') available" % (os.name,))
 
 ser = serial.Serial()
 q = queue.Queue()
@@ -258,10 +261,10 @@ class MyWindowClass(QtWidgets.QMainWindow, gui.Ui_MainWindow):
         self.hw.disconnect()
 
     def btn_dn1_clicked(self):
-        self.hw.send("M8\r\n")
+        self.hw.send("M7\r\n")
 
     def btn_dn2_clicked(self):
-        self.hw.send("M7\r\n")
+        self.hw.send("M8\r\n")
 
     def btn_a_left_clicked(self):
         self.set_move_mode(MOVE_REL)

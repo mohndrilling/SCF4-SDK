@@ -1,30 +1,30 @@
 {
-    "boot_count": 383,
-    "clean_exit": true,
+    "boot_count": 535,
+    "clean_exit": false,
     "current": {
         "A": {
-            "pos": 0,
-            "speed": 530
+            "pos": 5622,
+            "speed": 300
         },
         "B": {
             "pos": 0,
-            "speed": 400
+            "speed": 304
         },
         "C": {
-            "pos": 0,
-            "speed": 400
+            "pos": 5461,
+            "speed": 800
         }
     },
     "defaults": {
         "A": {
-            "jog_steps": 200,
-            "jog_steps_fine": 50,
+            "jog_steps": 500,
+            "jog_steps_fine": 100,
             "pos": 0,
             "speed": 0
         },
         "B": {
-            "jog_steps": 100,
-            "jog_steps_fine": 20,
+            "jog_steps": 500,
+            "jog_steps_fine": 100,
             "pos": 0,
             "speed": 0
         },
@@ -43,23 +43,23 @@
             "C": 0
         },
         "2": {
-            "A": 14043,
-            "B": 6845,
-            "C": 0
+            "A": 0,
+            "B": 0,
+            "C": 1340
         },
         "3": {
-            "A": 3043,
-            "B": 9065,
-            "C": 0
+            "A": 0,
+            "B": 0,
+            "C": 1063
         },
         "4": {
             "A": 200,
-            "B": 3577,
+            "B": 3537,
             "C": 0
         }
     },
     "seek_timeout": 5.0,
     "speed_default": 600,
     "speed_max": 4000,
-    "speed_min": 400
+    "speed_min": 200
 }
